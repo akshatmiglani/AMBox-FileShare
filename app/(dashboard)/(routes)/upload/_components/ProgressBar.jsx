@@ -7,7 +7,7 @@ const ProgressBar = ({ progress = 40, uploadedSuccessful }) => {
       <div className='text-[10px] bg-primary rounded-full text-white' style={{ width: `${progress}%` }}>
         {`${Number(progress).toFixed(0)}%`}
       </div>
-      {uploadedSuccessful && <SucessMsg />}
+      
     </div>
   );
 }
