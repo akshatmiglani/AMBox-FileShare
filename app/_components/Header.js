@@ -16,24 +16,24 @@ const Header = () => {
                             </div>
 
                             <div className="md:flex md:items-center md:gap-12">
-                            <nav aria-label="Global" className="hidden md:block">
-          <ul className="flex items-center gap-6 text-sm border-b">
-            <li>
-              <a className="text-black-700 text-lg transition hover:text-gray-500/75" href="#"> Upload </a>
-            </li>
+                                <nav aria-label="Global" className="hidden md:block">
+                                    <ul className="flex items-center gap-6 text-sm border-b">
+                                        <li>
+                                            <a className="text-black-700 text-lg transition hover:text-gray-500/75" href="#"> Upload </a>
+                                        </li>
 
-         </ul>
-        </nav>
+                                    </ul>
+                                </nav>
                                 <div className="flex items-center gap-4">
                                     <div className="sm:flex sm:gap-4">
                                         <a
                                             className="rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-white shadow transition hover:bg-black sm:block"
-                                            href="#"
+                                            href="/files"
                                         >
                                             Start Now
                                         </a>
 
-                                       
+
                                     </div>
 
                                     <div className="block md:hidden">
