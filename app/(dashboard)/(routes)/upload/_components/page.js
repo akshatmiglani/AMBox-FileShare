@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AlertMsg from './AlertMsg';
 import UploadPreview from './FilePreview';
 import ProgressBar from './ProgressBar';
+import SucessMsg from './SucessMsg';
 
 const UploadForm = ({uploadBtnClick,progress,uploadedSuccessful}) => {
     
@@ -23,6 +24,8 @@ const UploadForm = ({uploadBtnClick,progress,uploadedSuccessful}) => {
 
     return (
         <div className='text-center'>
+            
+            {uploadedSuccessful ? <SucessMsg /> : <>
             <label htmlFor="uploadFile1"
                 className="bg-red-50 text-primary font-semibold text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif]">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-11 mb-2 fill-gray-500" viewBox="0 0 32 32">
@@ -39,11 +42,14 @@ const UploadForm = ({uploadBtnClick,progress,uploadedSuccessful}) => {
             </label>
             {errorMsg ? <AlertMsg msg={errorMsg} /> : null}
             {file ? <UploadPreview file={file} removeFile={()=>setFile(null)}/> : null}
-            {progress>0?<ProgressBar uploadedSuccessful={uploadedSuccessful} progress={progress}/>:<>
+            {progress>0?<ProgressBar progress={progress}/>:<>
             <button onClick={()=>uploadBtnClick(file)} disabled={!file} className='p-2 bg-primary text-white w-[30%] rounded-full mt-5 disabled:bg-gray-500'>Upload</button>
-
             </>}
+            </>
+            }
+
         </div>
+        
     );
 };
 
