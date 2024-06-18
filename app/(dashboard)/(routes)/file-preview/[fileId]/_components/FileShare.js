@@ -1,4 +1,5 @@
 "use client"
+import GlobalApis from '@/app/GlobalApis';
 import React, { useState } from 'react';
 
 const FileShare = ({ file, onPasswordSave }) => {
@@ -26,6 +27,8 @@ const FileShare = ({ file, onPasswordSave }) => {
 
   const handleEmailSend = () => {
     // Implement email sending logic here
+    const data={};
+    GlobalApis.SendEmail(data).then(response=>{console.log("Sent email")})
     alert(`File sent to ${email}`);
   };
 
