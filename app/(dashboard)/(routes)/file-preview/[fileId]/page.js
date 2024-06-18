@@ -1,6 +1,6 @@
 "use client"
 import { app } from '@/firebaseconfig'
-import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore'
 import { ArrowLeft } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import FileInfo from './_components/FileInfo'
@@ -24,9 +24,14 @@ const FilePreview = ({params}) => {
         console.log("No such document")
     }
   }
-  const onPasswordSave=(password)=>{
-
-  }
+  const onPasswordSave = async (password) => {
+    try {
+      const docRef = doc(db, "uploadedfile", params?.fileId); // Ensure collection name is correct
+      await updateDoc(docRef, { password: password });
+    } catch (error) {
+      console.error("Error updating document:", error);
+    }
+  };
     return (
     <div className='py-20 px-20'>
         <Link href='/upload' className='flex gap-3'>
