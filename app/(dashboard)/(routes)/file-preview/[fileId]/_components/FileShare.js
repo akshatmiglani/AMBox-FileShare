@@ -13,7 +13,11 @@ const FileShare = ({ file, onPasswordSave }) => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    onPasswordSave(e.target.value);
+  };
+
+  const handleSavePassword = () => {
+    onPasswordSave(password);
+    alert('Password saved!');
   };
 
   const handleEmailChange = (e) => {
@@ -24,9 +28,11 @@ const FileShare = ({ file, onPasswordSave }) => {
     // Implement email sending logic here
     alert(`File sent to ${email}`);
   };
+
   if (!file) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="border p-5 rounded shadow-md">
       <h2 className="text-xl font-bold mb-3">Share File</h2>
@@ -56,21 +62,23 @@ const FileShare = ({ file, onPasswordSave }) => {
           />
           Enable Password
         </label>
-        {showPasswordInput && (<>
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            placeholder="Enter password"
-            className="border rounded p-2 mt-2 w-full"
-          />
-          <button
-            onClick={handleCopy}
-            className="bg-blue-500 text-white p-2 rounded ml-2"
-          >
-            Save
-          </button>
-          </>
+        
+        {showPasswordInput && (
+          <div className="flex mt-2">
+            <input
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              placeholder="Enter password"
+              className="border rounded p-2 flex-1"
+            />
+            <button
+              onClick={handleSavePassword}
+              className="bg-blue-500 text-white p-2 rounded ml-2"
+            >
+              Save
+            </button>
+          </div>
         )}
       </div>
       <div className="mb-3">

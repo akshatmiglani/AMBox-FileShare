@@ -1,7 +1,8 @@
 "use client"
-import { Upload, File } from 'lucide-react'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import { Upload, File } from 'lucide-react';
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const SideNav = () => {
     const menuList = [
@@ -9,17 +10,23 @@ const SideNav = () => {
             id: 1,
             name: 'Upload',
             icon: Upload,
-            path: 'upload'
+            path: '/upload'
         },
         {
             id: 2,
             name: 'Files',
             icon: File,
-            path: 'files'
+            path: '/files'
         },
-    ]
+    ];
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const router = useRouter();
+
+    const handleNavigation = (index, path) => {
+        setActiveIndex(index);
+        router.push(path);
+    };
 
     return (
         <div className='shadow-sm border-r h-full'>
@@ -30,8 +37,8 @@ const SideNav = () => {
                 {menuList.map((item, index) => (
                     <button 
                         key={item.id} 
-                        className={`flex gap-2 p-4 px-6 w-full hover:bg-gray-100  text-gray-500 ${activeIndex==index?'bg-red-100 text-primary':null}`} 
-                        onClick={() => setActiveIndex(index)}
+                        className={`flex gap-2 p-4 px-6 w-full hover:bg-gray-100 text-gray-500 ${activeIndex == index ? 'bg-red-100 text-primary' : ''}`} 
+                        onClick={() => handleNavigation(index, item.path)}
                     >
                         <item.icon />
                         <h2>{item.name}</h2>
@@ -39,7 +46,7 @@ const SideNav = () => {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SideNav
+export default SideNav;
