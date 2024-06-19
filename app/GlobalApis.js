@@ -22,3 +22,4 @@ const SendEmail = async (data) => {
 export default {
   SendEmail
 };
+
