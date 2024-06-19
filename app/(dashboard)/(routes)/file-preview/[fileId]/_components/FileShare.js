@@ -1,14 +1,24 @@
 "use client"
-import GlobalApis from '@/app/GlobalApis';
+import GlobalApis from '../../../../../GlobalApis';
+import { useUser } from '@clerk/nextjs';
 import React, { useState } from 'react';
 
 const FileShare = ({ file, onPasswordSave }) => {
   const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const { user } = useUser();
+
+  // Extract the params from the short URL
+  const getShortUrlParams = (shortUrl) => {
+    const urlParts = shortUrl.split('/');
+    return urlParts[urlParts.length - 1];
+  };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(file.shortUrl);
+    const shortUrlParams = getShortUrlParams(file.shortUrl);
+    const shortUrl = `http://localhost/view/${shortUrlParams}`;
+    navigator.clipboard.writeText(shortUrl);
     alert('URL copied to clipboard!');
   };
 
@@ -25,11 +35,28 @@ const FileShare = ({ file, onPasswordSave }) => {
     setEmail(e.target.value);
   };
 
-  const handleEmailSend = () => {
-    // Implement email sending logic here
-    const data={};
-    GlobalApis.SendEmail(data).then(response=>{console.log("Sent email")})
-    alert(`File sent to ${email}`);
+  const handleEmailSend = async () => {
+    const shortUrlParams = getShortUrlParams(file.shortUrl);
+    const shortUrl = `http://localhost:3000/view/${shortUrlParams}`;
+    const data = {
+      emailToSend: email,
+      userName: user?.fullName,
+      fileName: file.fileName,
+      fileSize: file.fileSize,
+      fileType: file.fileType,
+      shortUrl: shortUrl,
+    };
+  
+    try {
+      const response = await GlobalApis.SendEmail(data);
+      if (response.status === 200) {
+        alert(`File sent to ${email}`);
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
   };
 
   if (!file) {
@@ -44,7 +71,7 @@ const FileShare = ({ file, onPasswordSave }) => {
         <div className="flex">
           <input
             type="text"
-            value={file.shortUrl}
+            value={`http://localhost:3000/view/${getShortUrlParams(file.shortUrl)}`}
             readOnly
             className="flex-1 border rounded p-2"
           />

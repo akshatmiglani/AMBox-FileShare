@@ -1,11 +1,11 @@
 "use client"
-import { app } from '@/firebaseconfig'
 import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore'
 import { ArrowLeft } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import FileInfo from './_components/FileInfo'
 import FileShare from './_components/FileShare'
 import Link from 'next/link'
+import { app } from '../../../../../firebaseconfig'
 
 const FilePreview = ({params}) => {
   useEffect(()=>{

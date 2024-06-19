@@ -2,11 +2,11 @@
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import React, { useEffect, useState } from 'react';
 import UploadForm from './_components/page';
-import { app } from "@/firebaseconfig";
 import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { useUser } from "@clerk/nextjs";
-import { generateRandomString } from "@/app/GenerateRandom";
+import { generateRandomString } from "../../../GenerateRandom";
 import { useRouter } from "next/navigation";
+import { app } from "../../../../firebaseconfig";
 
 const Upload = () => {
   const storage = getStorage(app);
