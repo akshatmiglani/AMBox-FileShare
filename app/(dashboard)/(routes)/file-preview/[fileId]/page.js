@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import FileInfo from './_components/FileInfo'
 import FileShare from './_components/FileShare'
 import Link from 'next/link'
-import { app } from '../../../../../firebaseconfig'
+import { app } from '../../../../../firebaseConfig'
 
 const FilePreview = ({params}) => {
   useEffect(()=>{

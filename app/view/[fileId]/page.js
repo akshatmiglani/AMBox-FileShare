@@ -1,7 +1,7 @@
 "use client"
 import { Firestore, doc, getDoc, getFirestore } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { app } from '../../../firebaseconfig';
+import { app } from '../../../firebaseConfig';
 import FileItem from './_components/FileItem'
 const FileView = ({params}) => {
     const [file,setFile]=useState();

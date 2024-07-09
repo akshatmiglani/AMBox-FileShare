@@ -6,14 +6,14 @@ import { getFirestore, setDoc, doc } from "firebase/firestore";
 import { useUser } from "@clerk/nextjs";
 import { generateRandomString } from "../../../GenerateRandom";
 import { useRouter } from "next/navigation";
-import { app } from "../../../../firebaseconfig";
+import { app } from "../../../../firebaseConfig";
 
 const Upload = () => {
   const storage = getStorage(app);
   const [progress, setProgress] = useState(0);
   const [uploadedSuccessful, setUploadedSuccessful] = useState(false);
   const db = getFirestore(app);
-  const { user } = useUser();  // Destructure user from useUser
+  const { user } = useUser();  
   const [fileDocId,setFileDocId]=useState();
   const router=useRouter();
   useEffect(() => {

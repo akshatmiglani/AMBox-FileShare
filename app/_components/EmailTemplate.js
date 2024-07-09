@@ -1,7 +1,7 @@
 import React from "react";
 import { Body, Button, Container, Column, Head, Heading, Html, Img, Preview, Row, Section, Text } from "@react-email/components";
 
-const EmailTemplate = ({ firstName, fileName, fileSize, fileType, shortUrl }) => (
+const EmailTemplate = ({ fileName, fileSize, fileType, shortUrl }) => (
   <Html>
     <Head />
     <Preview>File Shared with You</Preview>
@@ -13,9 +13,6 @@ const EmailTemplate = ({ firstName, fileName, fileSize, fileType, shortUrl }) =>
         <Section style={content}>
           <Row>
             <Column>
-              <Heading style={{ fontSize: 32, fontWeight: "bold", textAlign: "center" }}>
-                Hi {firstName},
-              </Heading>
               <Heading as="h2" style={{ fontSize: 26, fontWeight: "bold", textAlign: "center" }}>
                 A file has been shared with you.
               </Heading>
