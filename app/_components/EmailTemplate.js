@@ -1,7 +1,7 @@
 import React from "react";
 import { Body, Button, Container, Column, Head, Heading, Html, Img, Preview, Row, Section, Text } from "@react-email/components";
 
-const EmailTemplate = ({ fileName, fileSize, fileType, shortUrl }) => (
+const EmailTemplate = ({ firstName,fileName, fileSize, fileType, shortUrl }) => (
   <Html>
     <Head />
     <Preview>File Shared with You</Preview>

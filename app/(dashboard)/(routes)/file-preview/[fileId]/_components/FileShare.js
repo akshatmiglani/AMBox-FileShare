@@ -17,7 +17,7 @@ const FileShare = ({ file, onPasswordSave }) => {
 
   const handleCopy = () => {
     const shortUrlParams = getShortUrlParams(file.shortUrl);
-    const shortUrl = `http://localhost/view/${shortUrlParams}`;
+    const shortUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/view/${shortUrlParams}`;
     navigator.clipboard.writeText(shortUrl);
     alert('URL copied to clipboard!');
   };
@@ -37,7 +37,7 @@ const FileShare = ({ file, onPasswordSave }) => {
 
   const handleEmailSend = async () => {
     const shortUrlParams = getShortUrlParams(file.shortUrl);
-    const shortUrl = `http://localhost:3000/view/${shortUrlParams}`;
+    const shortUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/view/${shortUrlParams}`;
     const data = {
       emailToSend: email,
       userName: user?.fullName,
@@ -71,7 +71,7 @@ const FileShare = ({ file, onPasswordSave }) => {
         <div className="flex">
           <input
             type="text"
-            value={`http://localhost:3000/view/${getShortUrlParams(file.shortUrl)}`}
+            value={`${process.env.NEXT_PUBLIC_BASE_URL}/view/${getShortUrlParams(file.shortUrl)}`}
             readOnly
             className="flex-1 border rounded p-2"
           />
